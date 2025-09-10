@@ -209,7 +209,6 @@ __marimo__/
 # Folders
 amcl_output/*
 data/*
-models/*
 output/*
 
 # Bash Scripts
