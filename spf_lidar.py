@@ -31,13 +31,13 @@ BEV_SCALE = 100
 PARTICLE_COUNT = 100
 PARTICLE_STD = 2.0
 ANGLE_STD = np.deg2rad(10)
-INIT_HEADING = np.deg2rad(-80)
+INIT_HEADING = np.deg2rad(110)
 SENSOR_RANGE = 5.0
 HORIZONTAL_FOV = np.deg2rad(87)
 TF = 0.55
 geojson_path = "data/riseholme_poles_trunk.geojson"
 # Paths for folder-based processing
-DATA_PATH = "data/2025/1/"
+DATA_PATH = "data/2025/ICRA/"
 CSV_DATA_PATH = DATA_PATH + "data.csv"
 
 # Camera Intrinsics - replace with your camera's actual values
