@@ -34,13 +34,13 @@ ANGLE_STD = np.deg2rad(10)
 INIT_HEADING = np.deg2rad(110)
 SENSOR_RANGE = 5.0
 HORIZONTAL_FOV = np.deg2rad(87)
-TF_GPS_CAMERA = 0.55
+CAMERA_BASE_TF = 0.55
 geojson_path = "data/riseholme_poles_trunk.geojson"
 # Paths for folder-based processing
 DATA_PATH = "data/2025/ICRA/"
 CSV_DATA_PATH = DATA_PATH + "data.csv"
 
-# Camera Intrinsics - replace with your camera's actual values
+# Camera Intrinsics
 class Intrinsics:
     def __init__(self):
         self.width_depth = 848
@@ -272,7 +272,7 @@ def measurement_likelihood(grouped_map_points, bev_poles_obs, bev_trunks_obs, pa
     # If no observations, we can return early.
     if not obs_all_local:
         for i, (px, py, _) in enumerate(particles):
-            px = px - TF_GPS_CAMERA ###############
+            px = px - CAMERA_BASE_TF ###############
             if gps_xy is not None:
                 gps_dist = np.linalg.norm(np.array([px, py]) - gps_xy)
                 weights[i] = np.exp(-(gps_dist**2) / (2 * gps_sigma**2))
@@ -799,7 +799,7 @@ if __name__ == "__main__":
                         help='Penalty value for a ray not hitting any map feature.')
     parser.add_argument('--wrong-hit-penalty', type=float, default=4.0,
                         help='Penalty value for a ray hitting a map feature of the wrong class.')
-    parser.add_argument('--gps-weight', type=float, default=0.8,
+    parser.add_argument('--gps-weight', type=float, default=0.5,
                         help='A complementary weight coefficient for the GPS error in the likelihood estimation.')
     args = parser.parse_args()
 
